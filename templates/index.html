@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Fake Profile Detector - Supervised Learning</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 AI Fake Profile Detection System</h1>
+            <p class="subtitle">Using Supervised Learning with Random Forest Classifier</p>
+        </header>
+
+        <main>
+            <div class="info-box">
+                <h2>📊 How it works:</h2>
+                <p>This system uses a <strong>Random Forest Classifier</strong> trained on labeled data to detect fake profiles.</p>
+                <p><strong>Supervised Learning Approach:</strong> The model learns patterns from examples of real and fake profiles.</p>
+            </div>
+
+            <form action="/predict" method="POST" class="prediction-form">
+                <h2>🔍 Enter Profile Information</h2>
+                
+                <div class="form-group">
+                    <label for="followers">Number of Followers:</label>
+                    <input type="number" id="followers" name="followers" 
+                           min="0" max="1000000" required 
+                           placeholder="e.g., 1500">
+                    <small>Fake accounts often have fewer followers</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="following">Number of Following:</label>
+                    <input type="number" id="following" name="following" 
+                           min="0" max="100000" required 
+                           placeholder="e.g., 200">
+                    <small>Fake accounts often follow many but have few followers</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="posts">Number of Posts:</label>
+                    <input type="number" id="posts" name="posts" 
+                           min="0" max="10000" required 
+                           placeholder="e.g., 45">
+                    <small>Fake accounts typically have fewer posts</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="account_age">Account Age (days):</label>
+                    <input type="number" id="account_age" name="account_age" 
+                           min="0" max="10000" required 
+                           placeholder="e.g., 120">
+                    <small>Newer accounts are more likely to be fake</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="profile_complete">Profile Complete:</label>
+                    <select id="profile_complete" name="profile_complete" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <small>Incomplete profiles are more suspicious</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="private">Account Privacy:</label>
+                    <select id="private" name="private" required>
+                        <option value="1">Private</option>
+                        <option value="0">Public</option>
+                    </select>
+                    <small>Private accounts can be more suspicious</small>
+                </div>
+
+                <button type="submit" class="btn-predict">🔍 Detect Profile</button>
+            </form>
+
+            <div class="model-info">
+                <h3>🎯 Model Information</h3>
+                <p><strong>Algorithm:</strong> Random Forest Classifier (Supervised Learning)</p>
+                <p><strong>Training:</strong> Trained on labeled dataset with 6 features</p>
+                <p><strong>Output:</strong> Binary classification (Real/Fake) with probability scores</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>AI Fake Profile Detection System | Supervised Learning Project</p>
+        </footer>
+    </div>
+</body>
+</html>
